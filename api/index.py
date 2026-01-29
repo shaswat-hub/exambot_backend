@@ -219,8 +219,5 @@ logger = logging.getLogger(__name__)
 async def shutdown_db_client():
     client.close()
 
-
-
-    if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+@app.on_event("shutdown")
+async def shutdown_db_client():
